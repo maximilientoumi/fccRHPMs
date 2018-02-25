@@ -17,11 +17,11 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.route("/").get(function(req, res){
+app.route("/api/whoami").get(function(req, res){
 
-var ua = parser(req.headers['user-agent']);
+// var ua = parser(req.headers['user-agent']);
     // write the result as response
-    res.end(JSON.stringify(ua, null, '  '));
+    res.end(JSON.stringify(parser(req.getResult())));
 })
 
 
