@@ -20,11 +20,21 @@ app.get("/", function (request, response) {
 app.route("/api/whoami").get(function(req, res){
   var language = parser(req.headers['accept-language']).ua.split(",")[0];
   var ipAdress = parser(req.headers['x-forwarded-for']).ua.split(",")[0];
+  var software = parser(req.headers['user-agent']).ua.split(" ")[1];
 
-var ua = parser(req.headers['user-agent']);
-    // write the result as response
-    res.end(JSON.stringify(ua, null, '  '));
-})
+var ua = {
+      "ip:": ipAdress,
+      "language: ": language,
+      "software: ":software
+  
+}
+// res.end(JSON.stringify(ua, null, '  '));
+ var ua = parser(req.headers['user-agent']);
+ //    // write the result as response
+  res.end(JSON.stringify(ua, null, '  '))
+});
+
+
 
 
 // Simple in-memory store for now
